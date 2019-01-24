@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -54,6 +55,7 @@ public class UrlResource {
 	 * @return object created and persisted with the informed data by the user
 	 */
 	@PostMapping("/{jsonData}")
+	//@RequestMapping(value="/jsonData", method=RequestMethod.POST, params="url")
 	public ResponseEntity<URL> save(@RequestBody URL url, HttpServletResponse response) {
 		
 		
@@ -75,7 +77,7 @@ public class UrlResource {
 	 * @param response http object with request data. 
 	 * @return object created and persisted with the newly created short url. 
 	 */
-	@PostMapping("/{longUrl}")
+	@PostMapping("/with/{longUrl}")
 	public ResponseEntity<URL> generateNewShortURL( @RequestBody String  longUrl ,HttpServletResponse response) {
 		URL  urlRetorno = service.generateNewURL(longUrl);
 		
